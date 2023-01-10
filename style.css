@@ -1,0 +1,214 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-size: 30px;
+  font-family: monospace;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(255, 0, 0);
+  border-bottom: 5px solid #195dac;
+}
+header .logo {
+  width: 300px;
+}
+
+.logo {
+  width: 400px;
+}
+
+#pokedex {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 40px;
+  text-align: center;
+  justify-content: space-evenly;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#pokedex .li {
+  display: flex;
+  width: 270px;
+  height: 400px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 1.5s;
+  margin-bottom: 40px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-radius: 80px 15px 80px 15px;
+  box-shadow: 2px 3px 10px 2px rgba(34, 12, 12, 0.56);
+  font-weight: bold;
+}
+#pokedex .front,
+#pokedex .back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+#pokedex .front {
+  display: flex;
+  flex-direction: column;
+  border-radius: 80px 15px 80px 15px;
+  background-color: rgb(255, 0, 0);
+  border-color: #195dac;
+  border-width: 2.5px;
+  border-style: solid;
+}
+#pokedex .back {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0px 10px 0px 20px;
+  border-radius: 10px 80px 10px 80px;
+  border-color: whitesmoke;
+  border-style: solid;
+  border-width: 5px;
+  transform: rotateY(180deg);
+}
+#pokedex .back .heightWeight {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  font-weight: 400px;
+  font-size: 20px;
+}
+#pokedex .back .heightWeight p {
+  background-color: rgba(245, 245, 245, 0.45);
+  border-radius: 5px 40px 5px 40px;
+  padding: 3px;
+}
+#pokedex .back .experience {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  background-color: rgba(245, 245, 245, 0.45);
+  border-radius: 5px 30px 5px 30px;
+}
+#pokedex .back .hp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  background-color: rgba(245, 245, 245, 0.45);
+  border-radius: 5px 30px 5px 30px;
+}
+
+.li:hover {
+  transform: rotateY(180deg);
+}
+
+h2 {
+  padding-top: 26px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 30px;
+}
+
+.imageContainer {
+  width: 270px;
+  height: 200px;
+  padding: 20px;
+  z-index: 1;
+}
+
+.imgFront {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+#circle {
+  background: rgb(255, 255, 255);
+  border-radius: 48% 52% 52% 48%/57% 61% 39% 43%;
+  position: absolute;
+  width: 72%;
+  height: 50%;
+  top: 80px;
+  left: 40px;
+  z-index: 0;
+  opacity: 30%;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 26px;
+}
+
+span {
+  border-radius: 30px 10px 30px 10px;
+  font-size: 24px;
+  font-weight: 400px;
+}
+
+p {
+  font-size: 20px;
+  display: flex;
+  text-align: justify;
+  justify-content: center;
+  margin: 5px;
+  font-weight: 400;
+}
+
+#typeDiv {
+  padding-top: 15px;
+}
+
+#nameType {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(255, 255, 69);
+}
+
+#div-type {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+#div-type .btn-type {
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 2px #000000;
+  margin-top: 15px;
+  padding: 20px;
+  border-radius: 50px;
+  border: 0;
+  font-size: 20px;
+  margin: 4px;
+  box-shadow: 4px 5px 18px 2px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+#div-type .btn-type:hover {
+  transform: scale(1.1);
+}
+
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paginacion .previous, .paginacion .next {
+  padding: 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: #195dac;
+  cursor: pointer;
+}
+.paginacion .page {
+  padding: 20px;
+}/*# sourceMappingURL=style.css.map */
