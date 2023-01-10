@@ -145,8 +145,8 @@ function renderFront() {
   const container$$ = document.querySelector(".container");
   const ol$$ = document.querySelector("#pokedex");
 
+  
   const cardLi$$ = document.createElement("li");
-
   const cardFront$$ = document.createElement("div");
   cardLi$$.appendChild(cardFront$$);
   const cardBack$$ = document.createElement("div");
@@ -375,9 +375,18 @@ function renderFront() {
   cardFront$$.appendChild(types$$);
 
   ol$$.appendChild(cardLi$$);
+
+  cardLi$$.addEventListener('click', function(){
+
+    cardLi$$.classList.toggle('is-flipped')
+   });
 };
 
 
+
+
+
+ 
 
 
 
