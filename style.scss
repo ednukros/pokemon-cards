@@ -50,14 +50,14 @@
    width: 100%;
 
    .li {
-     background-color: rgb(113, 105, 190);
+    
      border-radius: 80px 15px 80px 15px;
      box-shadow: 2px 3px 10px 2px rgba(34, 12, 12, 0.56);
      display: flex;
      font-weight: bold;
      height: 400px;
      margin-bottom: 40px;
-     padding-bottom: 16px;
+      padding-bottom: 16px;
      padding-top: 16px;
      position: relative;
      transform-style: preserve-3d;
@@ -79,7 +79,7 @@
 
    .front {
 
-
+    
      border-color: yellow;
      border-radius: 80px 15px 80px 15px;
      border-style: solid;
@@ -90,6 +90,7 @@
    }
 
    .back {
+    background-color: red;
      border-color: yellow;
      border-radius: 10px 80px 10px 80px;
      border-style: solid;
@@ -158,9 +159,7 @@
  .imageContainer {
 
    padding: 20px;
-   //  width: 100%;
-   //  height: 100%;
-   height: auto;
+   height: 200px;
    width: 150px;
    margin-left: 60px; //esto lo he añadido
 
@@ -177,8 +176,8 @@
  #circle {
    background: rgb(255, 255, 255);
    border-radius: 48% 52% 52% 48% / 57% 61% 39% 43%;
-   height: 50%;
-   left: 40px;
+   height: 40%;
+   left: 30px;
    opacity: 30%;
    position: absolute;
    top: 80px;
@@ -215,7 +214,7 @@
  }
 
  #nameType {
-   background-color: rgb(255, 255, 69);
+   background-color: white;
    padding-bottom: 3px;
    padding-left: 10px;
    padding-right: 10px;
@@ -276,10 +275,10 @@
  }
  .search::-webkit-input-placeholder {
   color: grey;
-  font-family: Arial;
+  
   font-size: 16px;
   font-weight: bold;
-  // padding-left: 10px;
+   padding-left: 10px;
   text-align: center;
   }
 
@@ -305,3 +304,14 @@
      padding: 10px;
    }
  }
+
+ //PRELOADER 
+
+  #preloader{
+    background:#fff url(./assets/loader.gif) no-repeat center;
+    background-size: 10%;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100 ;
+  }

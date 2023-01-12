@@ -35,7 +35,6 @@ header .logo {
   width: 100%;
 }
 #pokedex .li {
-  background-color: rgb(113, 105, 190);
   border-radius: 80px 15px 80px 15px;
   box-shadow: 2px 3px 10px 2px rgba(34, 12, 12, 0.56);
   display: flex;
@@ -70,6 +69,7 @@ header .logo {
   flex-direction: column;
 }
 #pokedex .back {
+  background-color: red;
   border-color: yellow;
   border-radius: 10px 80px 10px 80px;
   border-style: solid;
@@ -129,7 +129,7 @@ h2 {
 
 .imageContainer {
   padding: 20px;
-  height: auto;
+  height: 200px;
   width: 150px;
   margin-left: 60px;
   z-index: 1;
@@ -144,8 +144,8 @@ h2 {
 #circle {
   background: rgb(255, 255, 255);
   border-radius: 48% 52% 52% 48%/57% 61% 39% 43%;
-  height: 50%;
-  left: 40px;
+  height: 40%;
+  left: 30px;
   opacity: 30%;
   position: absolute;
   top: 80px;
@@ -181,7 +181,7 @@ p {
 }
 
 #nameType {
-  background-color: rgb(255, 255, 69);
+  background-color: white;
   padding-bottom: 3px;
   padding-left: 10px;
   padding-right: 10px;
@@ -221,9 +221,9 @@ p {
 
 .search::-webkit-input-placeholder {
   color: grey;
-  font-family: Arial;
   font-size: 16px;
   font-weight: bold;
+  padding-left: 10px;
   text-align: center;
 }
 
@@ -245,4 +245,13 @@ p {
   color: black;
   text-shadow: none;
   padding: 10px;
+}
+
+#preloader {
+  background: #fff url(./assets/loader.gif) no-repeat center;
+  background-size: 10%;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
 }/*# sourceMappingURL=style.css.map */
