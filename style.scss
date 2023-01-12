@@ -1,21 +1,23 @@
  $color: rgb(255, 0, 0);
 
  * {
+   box-sizing: border-box;
+   font-family: monospace;
+   font-size: 30px;
+   list-style: none;
    margin: 0;
    padding: 0;
-   box-sizing: border-box;
    text-decoration: none;
-   list-style: none;
-   font-size: 30px;
-   font-family: monospace;
  }
 
  header {
 
-   display: flex;
-   justify-content: center;
    background-color: $color;
    border-bottom: 5px solid #195dac;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 
    .logo {
      width: 300px;
@@ -23,8 +25,10 @@
 
  }
 
- 
 
+//  body {
+//    background-image: url(./assets/wallpaper.jpg);
+//  }
 
  .logo {
 
@@ -33,74 +37,77 @@
  }
 
  #pokedex {
-   display: flex;
-   flex-wrap: wrap;
-
-   width: 100%;
-   padding: 40px;
-   text-align: center;
-   justify-content: space-evenly;
 
 
    background-attachment: fixed;
    background-size: cover;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   padding: 40px;
+   text-align: center;
+
+   width: 100%;
 
    .li {
+     background-color: rgb(113, 105, 190);
+     border-radius: 80px 15px 80px 15px;
+     box-shadow: 2px 3px 10px 2px rgba(34, 12, 12, 0.56);
      display: flex;
-     width: 270px;
+     font-weight: bold;
      height: 400px;
+     margin-bottom: 40px;
+     padding-bottom: 16px;
+     padding-top: 16px;
      position: relative;
      transform-style: preserve-3d;
      transition: 1.5s;
-     margin-bottom: 40px;
-     padding-top: 16px;
-     padding-bottom: 16px;
-     border-radius: 80px 15px 80px 15px;
-     box-shadow: 2px 3px 10px 2px rgba(34, 12, 12, 0.56);
-     font-weight: bold;
+     width: 270px;
+     height: 400px;
    }
 
    .front,
    .back {
-     width: 100%;
+     backface-visibility: hidden;
      height: 100%;
+     left: 0;
      position: absolute;
      top: 0;
-     left: 0;
-     backface-visibility: hidden;
-   
-  }
+     width: 100%;
 
-   .front {
-     display: flex;
-     flex-direction: column;
-     border-radius: 80px 15px 80px 15px;
-     background-color: $color;
-     border-color: #195dac;
-     border-width: 2.5px;
-     border-style: solid;
-     cursor: pointer;
    }
 
-   .back{
-     display: flex;
-     flex-direction: column;
-     text-align: center;
-     padding: 0px 10px 0px 20px;
-     border-radius: 10px 80px 10px 80px;
-     border-color: whitesmoke;
+   .front {
+
+
+     border-color: yellow;
+     border-radius: 80px 15px 80px 15px;
      border-style: solid;
      border-width: 5px;
-     transform: rotateY(180deg);
      cursor: pointer;
+     display: flex;
+     flex-direction: column;
+   }
+
+   .back {
+     border-color: yellow;
+     border-radius: 10px 80px 10px 80px;
+     border-style: solid;
+     border-width: 5px;
+     cursor: pointer;
+     display: flex;
+     flex-direction: column;
+     padding: 0px 10px 0px 20px;
+     text-align: center;
+     transform: rotateY(180deg);
 
      .heightWeight {
        display: flex;
        flex-direction: row;
        flex-wrap: nowrap;
-       justify-content: space-between;
-       font-weight: 400px;
        font-size: 20px;
+       font-weight: 400px;
+       justify-content: space-between;
 
        p {
 
@@ -113,15 +120,17 @@
      }
 
      .experience {
+       background-color: rgba(245, 245, 245, 0.45);
+       border-radius: 5px 30px 5px 30px;
        display: flex;
        flex-direction: row;
        justify-content: space-between;
        margin-bottom: 5px;
-       background-color: rgba(245, 245, 245, 0.45);
-       border-radius: 5px 30px 5px 30px;
      }
 
      .hp {
+       background-color: rgba(245, 245, 245, 0.45);
+       border-radius: 5px 30px 5px 30px;
        display: flex;
        flex-direction: row;
        justify-content: space-between;
@@ -137,42 +146,52 @@
  }
 
  h2 {
-   padding-top: 26px;
-   padding-bottom: 10px;
-   text-transform: uppercase;
-   font-weight: 900;
+   color: white;
    font-size: 30px;
+   font-weight: 900;
+   padding-bottom: 10px;
+   padding-top: 26px;
+   text-transform: uppercase;
+   text-shadow: 2px 2px 2px #000000;
  }
 
  .imageContainer {
-   width: 270px;
-   height: 200px;
+
    padding: 20px;
+   //  width: 100%;
+   //  height: 100%;
+   height: auto;
+   width: 150px;
+   margin-left: 60px; //esto lo he añadido
+
    z-index: 1;
  }
 
 
  .imgFront {
-   width: 100%;
-   height: 100%;
    align-items: center;
+   height: 100%;
+   width: 100%;
  }
 
  #circle {
    background: rgb(255, 255, 255);
    border-radius: 48% 52% 52% 48% / 57% 61% 39% 43%;
-   position: absolute;
-   width: 72%;
    height: 50%;
-   top: 80px;
    left: 40px;
-   z-index: 0;
    opacity: 30%;
+   position: absolute;
+   top: 80px;
+   width: 72%;
+   z-index: 0;
  }
 
  h3 {
-   font-weight: bold;
+   padding-top: 5px;
    font-size: 26px;
+   font-weight: bold;
+   color: white;
+   text-shadow: 2px 2px 2px #000000;
  }
 
  span {
@@ -182,12 +201,12 @@
  }
 
  p {
-   font-size: 20px;
    display: flex;
-   text-align: justify;
+   font-size: 20px;
+   font-weight: 400;
    justify-content: center;
    margin: 5px;
-   font-weight: 400;
+   text-align: justify;
  }
 
  #typeDiv {
@@ -196,65 +215,93 @@
  }
 
  #nameType {
-   padding-top: 3px;
+   background-color: rgb(255, 255, 69);
    padding-bottom: 3px;
    padding-left: 10px;
    padding-right: 10px;
-   background-color: rgb(255, 255, 69);
+   padding-top: 3px;
+   text-shadow: 1px 1px 1px #000000;
  }
 
 
 
  //BOTONES
- #div-type {
+ .buttons-filter {
 
    display: flex;
-   justify-content: center;
    flex-wrap: wrap;
+   justify-content: center;
    padding: 20px;
+   //  background-color: white;
 
 
 
 
    .btn-type {
-    color:rgb(255, 255, 255);
-    text-shadow: 2px 2px 2px #000000;
+     border: 0;
+     border-radius: 50px;
+     box-shadow: 8px 8px 10px 1px rgba(0, 0, 0, 0.4);
+     color: rgb(255, 255, 255);
+     cursor: pointer;
+     //font-size: 20px;
+     margin: 6px;
      margin-top: 15px;
      padding: 20px;
-     border-radius: 50px;
-     border: 0;
-     font-size: 20px;
-     margin: 4px;
-     box-shadow: 4px 5px 18px 2px rgba(0, 0, 0, 0.4);
-     
-     cursor: pointer;
+     text-shadow: 2px 2px 2px #000000;
+     background-size: contain;
+     background-repeat: no-repeat;
 
 
    }
 
-   .btn-type:hover {
-    
+   button:hover {
+
      -ms-transform: scale(1.1);
      transform: scale(1.1);
+
+
+
    }
+
 
 
  }
 
- .paginacion{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .previous,.next{
-
-    padding: 20px;
-    border: none;
-    border-radius: 50px;
-    background-color: #195dac;
-    cursor:pointer;
+ .search {
+  border: none;
+  border-radius: 20px;
+  border-bottom: 1px solid black;
+  margin-bottom: 5px;
+  
+ }
+ .search::-webkit-input-placeholder {
+  color: grey;
+  font-family: Arial;
+  font-size: 16px;
+  font-weight: bold;
+  // padding-left: 10px;
+  text-align: center;
   }
 
-  .page{
-    padding: 20px;
-  }
+
+ .paginacion {
+   align-items: center;
+   display: flex;
+   justify-content: center;
+
+   .previous,
+   .next {
+     background-color: #195dac;
+     border: none;
+     border-radius: 90px;
+     cursor: pointer;
+     box-shadow: 4px 5px 18px 2px rgba(0, 0, 0, 0.4);
+     padding: 20px;
+   }
+
+   .page {
+     color: black;
+     text-shadow: none;
+     padding: 10px;
+   }
  }
