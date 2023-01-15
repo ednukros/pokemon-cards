@@ -1,42 +1,80 @@
-//DECLARAMOS LAS VARIABLES QUE UTILIZAREMOS
+//Global declarations
 let resp;
 let resul;
 let response;
 let results;
-let pokemons = [];
-let firstPage = 1;
-let lastPage;
+let pokes = []; //fetch
+const types = [];
+let start = 0;
+let limit = 0;
 
 
-//SELECCIONAMOS ELEMENTOS HTML 
-const previous = document.querySelector("#previous");
-const next = document.querySelector("#next");
+//Selection of html elements
+const previous$$ = document.querySelector(".previous");
+const next$$ = document.querySelector(".next");
+const page$$ = document.querySelector(".page");
 const ol$$ = document.querySelector("#pokedex");
 const container$$ = document.querySelector(".container");
-const typeButton = document.querySelector(".btn-type")
-const searchInput$$ = document.querySelector(".search")
+const typeButton = document.querySelector(".btn-type");
+const searchInput$$ = document.querySelector(".search");
+let pageNumber = parseInt(page$$.textContent);
 
-
-//PETICION A LA API
 const getPokemons = async () => {
-  response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150`);
-  results = await response.json();
 
+  
+  pokes.splice(0);
+  
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${start}&limit=0`);
+  const results = await response.json();
 
+  limit = Math.floor(results.count / 20) + 1;
 
-  for (let i = 1; i < results.results.length; i++) {
-
-
-    resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-
-    resul = await resp.json();
-    pokemons.push(resul);
-
+  for (const pokemon of results.results) {
+    const poke = await fetch(pokemon.url);
+    const pokeJson = await poke.json();
+    pokes.push(pokeJson);
   }
-  renderButtons();
-  renderFront(pokemons);
+  
+   renderFront(pokes);
+   
+   console.log(pokes);
+   renderButtons();
+   
+}
 
+previous$$.addEventListener("click", () => changePage("-"));
+  next$$.addEventListener("click" ,() => changePage("+"));
 
+const changePage = (operation) => {
+   ol$$.innerHTML="";
+    console.log("pagina",pageNumber);
+
+  if (operation === "+") {
+     
+    console.log(start);
+    pageNumber+= 1;
+    page$$.textContent = pageNumber;
+    console.log("pagina",pageNumber);
+    start += 20;
+  } else if (operation === "-") {
+    console.log(start);
+    console.log("pagina",pageNumber);
+    page$$.textContent = --pageNumber;
+    start -= 20;
+  
+  } else if (pageNumber !== 1 && pageNumber != limit) {
+
+    if(operation === "-"){
+
+      page$$.textContent = --pageNumber;
+      start -= 20;
+    }else{
+      page$$.textContent = ++pageNumber;
+      start += 20;
+    }
+  }
+  
+  getPokemons()
 
 }
 
@@ -46,9 +84,20 @@ const renderButtons = () => {
 
   const divBtnFilter$$ = document.querySelector(".buttons-filter");
   divBtnFilter$$.innerHTML = "";
-  const types = [];
+  const btnAll = document.createElement("button");
 
-  for (const pokemon of pokemons) {
+  btnAll.setAttribute("id", "all");
+  btnAll.addEventListener("click", () => {
+    ol$$.innerHTML = "";
+     renderFront(pokes);
+  })
+
+
+  container$$.prepend(divBtnFilter$$);
+  divBtnFilter$$.appendChild(btnAll);
+
+
+  for (const pokemon of pokes) {
 
     for (const type of pokemon.types) {
       if (!types.includes(type.type.name)) {
@@ -58,6 +107,7 @@ const renderButtons = () => {
       }
     }
   }
+
 
 
   for (const type of types) {
@@ -71,11 +121,12 @@ const renderButtons = () => {
     btn.addEventListener("click", () => filterTypes(type))
 
 
+
     btn.setAttribute("class", "btn-type");
 
 
     if (type === "grass") {
-      //btn.style.backgroundColor = "#4A9681";
+
       btn.style.backgroundImage = "url('./assets/grass.png')";
 
     }
@@ -145,7 +196,7 @@ const renderButtons = () => {
     }
     if (type === "fighting") {
       btn.style.backgroundColor = "#2F2F2F";
-      btn.style.backgroundImage = "url('./assets/fight.png')";
+      btn.style.backgroundImage = "url('./assets/fighting.png')";
 
     }
     if (type === "psychic") {
@@ -168,19 +219,27 @@ const renderButtons = () => {
 }
 
 
+let pokemonFiltered = [];
 const filterTypes = (type) => {
 
-  const pokemonFiltered = pokemons.filter((pokemon) =>
-    pokemon.types[0].type.name === type)
+  pokemonFiltered = pokes.filter((pokemon) => {
+    for (let element of pokemon.types) {
+      if (element.type.name === type) {
+        return (pokemonFiltered = [...pokemonFiltered, pokemon]);
+      }
+    }
+  });
 
-  //AQUI NO CONSIGO FILTRAR LA SEGUNDA POSICION DEL TYPES
+
   ol$$.innerHTML = ""
   renderFront(pokemonFiltered)
-}
+
+};
+
 
 const search = () => {
 
-  const pokemonSearch = pokemons.filter((pokemon) => {
+  const pokemonSearch = pokes.filter((pokemon) => {
     return pokemon.name
       .toLowerCase()
       .includes(searchInput$$.value.toLocaleLowerCase());
@@ -195,7 +254,7 @@ searchInput$$.addEventListener("input", search)
 
 function renderFront(pokemonsToPrint) {
 
-  //ol$$.innerHTML = "";
+  ol$$.innerHTML = "";
 
   // const container$$ = document.querySelector(".container");
   // const ol$$ = document.querySelector("#pokedex");
@@ -208,21 +267,30 @@ function renderFront(pokemonsToPrint) {
     cardLi$$.appendChild(cardBack$$);
     // ELEMENTOS CARDFRONT
     const h2$$ = document.createElement("h2");
+    h2$$.setAttribute("class", "name");
     h2$$.textContent = pokemon.name;
 
 
 
     //Creación de circulo detrás imagen
     const circle$$ = document.createElement("div");
+    const number$$ = document.createElement("p");
+    // number$$.textContent = '#'+pokemon.id;
 
     circle$$.setAttribute("id", "circle");
+    // number$$.setAttribute("class", "number");
 
+    // circle$$.appendChild(number$$)
     cardFront$$.appendChild(circle$$);
 
     const imageContainer$$ = document.createElement("div");
     const img$$ = document.createElement("img");
     img$$.setAttribute("class", "imgFront")
     img$$.src = pokemon.sprites.other.dream_world.front_default;
+    
+    // sprites.versions["generation-v"]["black-white"].animated.front_default;
+
+    //sprites.other.dream_world.front_default;
 
 
     //sprites.other.home.front_default;
@@ -231,7 +299,8 @@ function renderFront(pokemonsToPrint) {
 
 
     const id$$ = document.createElement("h3");
-    id$$.textContent = "#" + pokemon.id; //nuevo
+
+    id$$.textContent = pokemon.id;
 
     const types$$ = document.createElement("div");
 
@@ -239,107 +308,67 @@ function renderFront(pokemonsToPrint) {
     types$$.setAttribute("id", "typeDiv");
 
     for (const tipo of pokemon.types) {
-      const nameType$$ = document.createElement("span");
+      const nameType$$ = document.createElement("img");
       nameType$$.setAttribute("id", "nameType");
       types$$.appendChild(nameType$$);
-      nameType$$.textContent = tipo.type.name;
-
+      nameType$$.src = './assets/' + tipo.type.name + '.png'
 
       if (tipo.type.name === "grass") {
-        nameType$$.style.color = "#4A9681";
-        nameType$$.style.border = "4px solid #4A9681"
-        cardLi$$.style.backgroundColor = "#4A9681"
+
+        cardLi$$.style.backgroundColor = "#4A9681";
       }
       if (tipo.type.name === "electric") {
-        nameType$$.style.color = "#FFEA70";
-        nameType$$.style.border = "4px solid ##FFEA70"
+
         cardLi$$.style.backgroundColor = "#FFEA70";
       }
       if (tipo.type.name === "normal") {
-        nameType$$.style.color = "#d8a3ac";
-        nameType$$.style.border = "4px solid #d8a3ac"
-        cardLi$$.style.backgroundColor = "#d8a3ac";
 
+        cardLi$$.style.backgroundColor = "#d8a3ac";
       }
       if (tipo.type.name === "fire") {
-        nameType$$.style.color = "#FF675C";
-        nameType$$.style.border = "4px solid #FF675C"
+
         cardLi$$.style.backgroundColor = "#FF675C";
-
-
       }
       if (tipo.type.name === "water") {
-        nameType$$.style.color = "#0596C7";
-        nameType$$.style.border = "4px solid #0596C7"
         cardLi$$.style.backgroundColor = "#0596C7";
       }
       if (tipo.type.name === "ice") {
-        nameType$$.style.color = "#AFEAFD";
-        nameType$$.style.border = "4px solid #AFEAFD"
         cardLi$$.style.backgroundColor = "#AFEAFD";
       }
       if (tipo.type.name === "rock") {
-        nameType$$.style.color = "#999799";
-        nameType$$.style.border = "4px solid #999799"
+
         cardLi$$.style.backgroundColor = "#999799";
       }
       if (tipo.type.name === "flying") {
-        nameType$$.style.color = "#7AE7C7";
-        nameType$$.style.border = "4px solid #7AE7C7"
         cardLi$$.style.backgroundColor = "#7AE7C7";
       }
 
       if (tipo.type.name === "bug") {
-        nameType$$.style.color = "#A2FAA3";
-        nameType$$.style.border = "4px solid #A2FAA3"
         cardLi$$.style.backgroundColor = "#A2FAA3";
       }
       if (tipo.type.name === "poison") {
-        nameType$$.style.color = "#7e54c7";
-        nameType$$.style.border = "4px solid #7e54c7"
-        cardBack$$.style.backgroundColor = "#7e54c7";
+
         cardLi$$.style.backgroundColor = "#7e54c7";
       }
       if (tipo.type.name === "ground") {
-        nameType$$.style.color = "#d86c00";
-        nameType$$.style.border = "4px solid #d86c00"
-        cardBack$$.style.backgroundColor = "#d86c00";
         cardLi$$.style.backgroundColor = "#d86c00";
       }
       if (tipo.type.name === "dragon") {
-        nameType$$.style.color = "#DA627D";
-        nameType$$.style.border = "4px solid #DA627D"
-        cardBack$$.style.backgroundColor = "#DA627D";
         cardLi$$.style.backgroundColor = "#DA627D";
       }
       if (tipo.type.name === "steel") {
-        nameType$$.style.color = "#1D8A99";
-        nameType$$.style.border = "4px solid #1D8A99"
-        cardBack$$.style.backgroundColor = "#1D8A99";
         cardLi$$.style.backgroundColor = "#1D8A99";
       }
       if (tipo.type.name === "fighting") {
-        nameType$$.style.color = "#2F2F2F";
-        nameType$$.style.border = "4px solid #2F2F2F"
-        cardBack$$.style.backgroundColor = "#2F2F2F";
         cardLi$$.style.backgroundColor = "#2F2F2F";
       }
       if (tipo.type.name === "psychic") {
-        nameType$$.style.color = "#FFC6D9";
-        nameType$$.style.border = "4px solid #FFC6D9"
-        cardBack$$.style.backgroundColor = "#FFC6D9";
         cardLi$$.style.backgroundColor = "#FFC6D9";
       }
       if (tipo.type.name === "ghost") {
-        nameType$$.style.color = "#561D25";
-        nameType$$.style.border = "4px solid #561D25"
-        cardBack$$.style.backgroundColor = "#561D25";
         cardLi$$.style.backgroundColor = "#561D25";
       }
       if (tipo.type.name === "fairy") {
-        nameType$$.style.color = "#e589a8";
-        nameType$$.style.border = "4px solid #e589a8"
-        cardBack$$.style.backgroundColor = "#e589a8";
         cardLi$$.style.backgroundColor = "#e589a8";
       }
     };
@@ -440,9 +469,10 @@ function renderFront(pokemonsToPrint) {
 
 
     cardFront$$.appendChild(h2$$);
+    cardFront$$.appendChild(id$$);
     cardFront$$.appendChild(imageContainer$$);
     imageContainer$$.appendChild(img$$);
-    cardFront$$.appendChild(id$$);
+
     cardFront$$.appendChild(types$$);
 
 
@@ -452,6 +482,7 @@ function renderFront(pokemonsToPrint) {
     cardLi$$.addEventListener('click', function () {
 
       cardLi$$.classList.toggle('is-flipped')
+
     });
   }
 };
@@ -462,17 +493,17 @@ function renderFront(pokemonsToPrint) {
 
 
 function quitePreloader() {
-  let loader = document.querySelector('#preloader');       
+  let loader = document.querySelector('#preloader');
   loader.style.display = "none";
-  
+
 }
-const myTimeOut = setTimeout(quitePreloader, 3000);
+const myTimeOut = setTimeout(quitePreloader, 2000);
 
 
 function init() {
   getPokemons();
 
- 
+
 
 
 };
