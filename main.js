@@ -21,9 +21,9 @@ let pageNumber = parseInt(page$$.textContent);
 
 const getPokemons = async () => {
 
-  
+
   pokes.splice(0);
-  
+
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${start}&limit=0`);
   const results = await response.json();
 
@@ -34,46 +34,46 @@ const getPokemons = async () => {
     const pokeJson = await poke.json();
     pokes.push(pokeJson);
   }
-  
-   renderFront(pokes);
-   
-   console.log(pokes);
-   renderButtons();
-   
+
+  renderFront(pokes);
+
+  console.log(pokes);
+  renderButtons();
+
 }
 
 previous$$.addEventListener("click", () => changePage("-"));
-  next$$.addEventListener("click" ,() => changePage("+"));
+next$$.addEventListener("click", () => changePage("+"));
 
 const changePage = (operation) => {
-   ol$$.innerHTML="";
-    console.log("pagina",pageNumber);
+  ol$$.innerHTML = "";
+  console.log("pagina", pageNumber);
 
   if (operation === "+") {
-     
+
     console.log(start);
-    pageNumber+= 1;
+    pageNumber += 1;
     page$$.textContent = pageNumber;
-    console.log("pagina",pageNumber);
+    console.log("pagina", pageNumber);
     start += 20;
   } else if (operation === "-") {
     console.log(start);
-    console.log("pagina",pageNumber);
+    console.log("pagina", pageNumber);
     page$$.textContent = --pageNumber;
     start -= 20;
-  
+
   } else if (pageNumber !== 1 && pageNumber != limit) {
 
-    if(operation === "-"){
+    if (operation === "-") {
 
       page$$.textContent = --pageNumber;
       start -= 20;
-    }else{
+    } else {
       page$$.textContent = ++pageNumber;
       start += 20;
     }
   }
-  
+
   getPokemons()
 
 }
@@ -89,7 +89,7 @@ const renderButtons = () => {
   btnAll.setAttribute("id", "all");
   btnAll.addEventListener("click", () => {
     ol$$.innerHTML = "";
-     renderFront(pokes);
+    renderFront(pokes);
   })
 
 
@@ -255,10 +255,6 @@ searchInput$$.addEventListener("input", search)
 function renderFront(pokemonsToPrint) {
 
   ol$$.innerHTML = "";
-
-  // const container$$ = document.querySelector(".container");
-  // const ol$$ = document.querySelector("#pokedex");
-
   for (const pokemon of pokemonsToPrint) {
     const cardLi$$ = document.createElement("li");
     const cardFront$$ = document.createElement("div");
@@ -278,16 +274,13 @@ function renderFront(pokemonsToPrint) {
     // number$$.textContent = '#'+pokemon.id;
 
     circle$$.setAttribute("id", "circle");
-    // number$$.setAttribute("class", "number");
-
-    // circle$$.appendChild(number$$)
     cardFront$$.appendChild(circle$$);
 
     const imageContainer$$ = document.createElement("div");
     const img$$ = document.createElement("img");
     img$$.setAttribute("class", "imgFront")
     img$$.src = pokemon.sprites.other.dream_world.front_default;
-    
+
     // sprites.versions["generation-v"]["black-white"].animated.front_default;
 
     //sprites.other.dream_world.front_default;
@@ -374,6 +367,14 @@ function renderFront(pokemonsToPrint) {
     };
 
     // ELEMENTOS CARDBACK
+    const imgBackDiv$$ = document.createElement("div");
+    const imgBack$$ = document.createElement("img");
+    imgBackDiv$$.setAttribute("class","img-back-div")
+    imgBack$$.setAttribute("class", "imgBack")
+    imgBack$$.src = pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default;
+    imgBackDiv$$.appendChild(imgBack$$);
+    cardBack$$.appendChild(imgBackDiv$$);
+
     const h2$$Back = document.createElement("h2");
     h2$$Back.setAttribute("class", "h2Back");
     h2$$Back.textContent = "#" + pokemon.id;
@@ -389,6 +390,8 @@ function renderFront(pokemonsToPrint) {
     const weight$$ = document.createElement("p");
     weight$$.textContent = "Peso" + " " + pokemon.weight;
     heightWeight$$.appendChild(weight$$);
+
+    
 
     const experience$$ = document.createElement("span");
     experience$$.setAttribute("class", "experience")
