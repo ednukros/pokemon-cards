@@ -49,7 +49,7 @@ const changePage = (operation) => {
   ol$$.innerHTML = "";
   console.log("pagina", pageNumber);
 
-  if (operation === "+") {
+  if (operation === "+" && pageNumber != limit) {
 
     console.log(start);
     pageNumber += 1;
@@ -57,11 +57,10 @@ const changePage = (operation) => {
     console.log("pagina", pageNumber);
     start += 20;
   } else if (operation === "-") {
-    console.log(start);
-    console.log("pagina", pageNumber);
+    
     page$$.textContent = --pageNumber;
     start -= 20;
-
+  
   } else if (pageNumber !== 1 && pageNumber != limit) {
 
     if (operation === "-") {
@@ -73,10 +72,23 @@ const changePage = (operation) => {
       start += 20;
     }
   }
-
+  // }else if (pageNumber === 1) {
+  //   previous$$.disabled = true;
+  // }
   getPokemons()
-
 }
+
+//controlamos que el numero de nuestra pagina no salga del rango posible en la paginación
+// if(pageNumber === 1){
+//   previous$$.disabled = true;
+//   console.log("estoy en el primer else if" + pageNumber)
+// }else if (pageNumber === limit) {
+//    next$$.disabled = true;
+// }else if(!pageNumber === 1){
+//   previous$$.disabled = false;
+//   console.log("estoy en el ultimo else if" + pageNumber)
+
+// }
 
 
 //FUNCION PARA CREAR LOS BOTONES DE FILTRADO
@@ -262,6 +274,8 @@ function renderFront(pokemonsToPrint) {
     const cardBack$$ = document.createElement("div");
     cardLi$$.appendChild(cardBack$$);
     // ELEMENTOS CARDFRONT
+    const header$$ = document.createElement("div")
+    header$$.setAttribute("class", "headerCard")
     const h2$$ = document.createElement("h2");
     h2$$.setAttribute("class", "name");
     h2$$.textContent = pokemon.name;
@@ -270,11 +284,11 @@ function renderFront(pokemonsToPrint) {
 
     //Creación de circulo detrás imagen
     const circle$$ = document.createElement("div");
-    const number$$ = document.createElement("p");
+    // const number$$ = document.createElement("p");
     // number$$.textContent = '#'+pokemon.id;
 
     circle$$.setAttribute("id", "circle");
-    cardFront$$.appendChild(circle$$);
+   
 
     const imageContainer$$ = document.createElement("div");
     const img$$ = document.createElement("img");
@@ -404,25 +418,25 @@ function renderFront(pokemonsToPrint) {
     experience$$.appendChild(experienceResul$$);
 
 
-    const hp$$ = document.createElement("span");
-    hp$$.setAttribute("class", "hp")
-    cardBack$$.appendChild(hp$$);
-    const hpText$$ = document.createElement("p");
-    hpText$$.textContent = "Hp"
-    hp$$.appendChild(hpText$$);
-    const hpResul$$ = document.createElement("p");
-    hpResul$$.textContent = pokemon.stats[0].base_stat;
-    hp$$.appendChild(hpResul$$);
+    // const hp$$ = document.createElement("span");
+    // hp$$.setAttribute("class", "hp")
+    // cardBack$$.appendChild(hp$$);
+    // const hpText$$ = document.createElement("p");
+    // hpText$$.textContent = "Hp"
+    // hp$$.appendChild(hpText$$);
+    // const hpResul$$ = document.createElement("p");
+    // hpResul$$.textContent = pokemon.stats[0].base_stat;
+    // hp$$.appendChild(hpResul$$);
 
-    const attack$$ = document.createElement("span");
-    attack$$.setAttribute("class", "hp")
-    cardBack$$.appendChild(attack$$);
-    const attackText$$ = document.createElement("p");
-    attackText$$.textContent = "Ataque";
-    attack$$.appendChild(attackText$$);
-    const attackResul$$ = document.createElement("p");
-    attackResul$$.textContent = pokemon.stats[1].base_stat;
-    attack$$.appendChild(attackResul$$);
+    // const attack$$ = document.createElement("span");
+    // attack$$.setAttribute("class", "hp")
+    // cardBack$$.appendChild(attack$$);
+    // const attackText$$ = document.createElement("p");
+    // attackText$$.textContent = "Ataque";
+    // attack$$.appendChild(attackText$$);
+    // const attackResul$$ = document.createElement("p");
+    // attackResul$$.textContent = pokemon.stats[1].base_stat;
+    // attack$$.appendChild(attackResul$$);
 
     const especialAttack$$ = document.createElement("span");
     especialAttack$$.setAttribute("class", "hp")
@@ -471,12 +485,17 @@ function renderFront(pokemonsToPrint) {
     cardBack$$.setAttribute("class", "back");
 
 
-    cardFront$$.appendChild(h2$$);
-    cardFront$$.appendChild(id$$);
+    // cardFront$$.appendChild(h2$$);
+    // cardFront$$.appendChild(id$$);
+    cardFront$$.appendChild(header$$)
+    header$$.appendChild(h2$$)
+    header$$.appendChild(id$$)
+    cardFront$$.appendChild(types$$);
     cardFront$$.appendChild(imageContainer$$);
     imageContainer$$.appendChild(img$$);
+    cardFront$$.appendChild(circle$$);
 
-    cardFront$$.appendChild(types$$);
+   
 
 
     ol$$.appendChild(cardLi$$)

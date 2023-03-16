@@ -15,19 +15,14 @@
 
 header {
   align-items: center;
-  background-color: rgb(255, 0, 0);
-  box-shadow: -2px 20px 12px -17px rgba(0, 0, 0, 0.75);
+  background-color: #e32931;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-bottom: 8px;
 }
 header .logo {
-  width: 300px;
-}
-
-.logo {
-  width: 400px;
+  width: 200px;
 }
 
 #pokedex {
@@ -36,7 +31,9 @@ header .logo {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 60px;
+  padding-top: 15px;
+  padding-left: 70px;
+  padding-right: 70px;
   text-align: center;
   width: 100%;
 }
@@ -45,22 +42,20 @@ header .logo {
   box-shadow: -2px 20px 12px -17px rgba(0, 0, 0, 0.75);
   display: flex;
   font-weight: bold;
-  height: 400px;
-  height: 400px;
+  height: 330px;
   margin-bottom: 40px;
-  margin-right: 30px;
   padding-bottom: 16px;
   padding-top: 16px;
   position: relative;
   transform-style: preserve-3d;
   transition: 1.5s;
-  width: 270px;
+  width: 230px;
 }
 #pokedex .front,
 #pokedex .back {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  border: 3px outset rgb(98, 74, 163);
+  border: 2px outset rgb(240, 233, 233);
   border-radius: 20px;
   box-shadow: inset 3px 3px 3px rgba(255, 255, 255, 0.7), inset -2px -2px 3px rgba(0, 0, 0, 0.1), 2px 2px 10px rgba(0, 0, 0, 0.1);
   height: 100%;
@@ -70,14 +65,12 @@ header .logo {
   width: 100%;
 }
 #pokedex .front {
-  -webkit-backdrop-filter: blur(100px);
-          backdrop-filter: blur(100px);
   cursor: pointer;
   display: flex;
   flex-direction: column;
 }
 #pokedex .back {
-  background-color: red;
+  background-color: #e32931;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -151,19 +144,36 @@ header .logo {
   transform: rotateY(180deg);
 }
 
-.name {
+.headerCard {
   background-color: yellow;
   border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+.headerCard h3 {
+  font-family: "Pokemon";
+  font-size: 26px;
+  font-weight: bold;
+  color: white;
+  padding-top: 3px;
+  padding-right: 15px;
+  text-shadow: 0px -2px 6px #000000;
+  letter-spacing: 3px;
+}
+.headerCard .name {
   color: white;
   font-family: "Pokemon";
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 900;
   height: 50px;
-  letter-spacing: 3px;
+  letter-spacing: 3.5px;
   padding-left: 19px;
-  padding-top: 3px;
+  padding-top: 5px;
   text-shadow: 0px -2px 6px #000000;
   text-transform: uppercase;
+  width: 150px;
 }
 
 .imageContainer {
@@ -179,8 +189,8 @@ header .logo {
 .imgFront {
   align-items: center;
   position: relative;
-  top: 10px;
-  width: 80%;
+  bottom: 16px;
+  width: 100px;
 }
 
 #circle {
@@ -193,25 +203,6 @@ header .logo {
   position: absolute;
   width: 50%;
   z-index: 0;
-}
-
-h3 {
-  background-color: yellow;
-  border: 3px outset rgb(98, 74, 163);
-  border-radius: 5px;
-  bottom: 63px;
-  color: white;
-  font-family: "Pokemon";
-  font-size: 26px;
-  font-weight: bold;
-  height: 70px;
-  letter-spacing: 5px;
-  padding-top: 10px;
-  position: relative;
-  right: 25px;
-  text-align: center;
-  text-shadow: 0px -2px 6px #000000;
-  width: 70px;
 }
 
 span {
@@ -229,17 +220,20 @@ span p {
 }
 
 #typeDiv {
-  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+  margin-top: 10px;
+  width: 25px;
+  box-shadow: 11px 16px 19px -12px rgba(0, 0, 0, 0.75);
 }
-
-#nameType {
+#typeDiv #nameType {
   background-repeat: no-repeat;
   background-size: contain;
-  padding-bottom: 31px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 3px;
-  width: 60px;
+  width: 25px;
+  border: 1.8px solid #fff;
+  margin-top: 3px;
+  border-radius: 50%;
 }
 
 .buttons-filter {
