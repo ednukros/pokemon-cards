@@ -13,21 +13,23 @@ $color_purple: rgb(98, 74, 163);
 * {
   box-sizing: border-box;
   font-family: monospace;
+  font-family: "Pokemon";
 
   list-style: none;
   margin: 0;
   padding: 0;
   text-decoration: none;
+  color: white;
+
 }
 
 header {
   align-items: center;
 
   background-color: #e32931;
-  // -webkit-box-shadow: -2px 20px 12px -17px rgba(0, 0, 0, 0.75);
-  // -moz-box-shadow: -2px 20px 12px -17px rgba(0, 0, 0, 0.75);
-  // box-shadow: -2px 20px 12px -17px rgba(0, 0, 0, 0.75);
-  //  border-bottom: 5px solid #195dac;
+  -webkit-box-shadow: 0px 14px 20px -17px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow:0px 14px 20px -17px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 14px 20px -17px rgba(0, 0, 0, 0.75);
 
   display: flex;
   flex-direction: column;
@@ -76,9 +78,9 @@ header {
   .front,
   .back {
     backface-visibility: hidden;
-    border: 2px outset rgb(240, 233, 233);
+    border: 2px outset #ffffff00;
     border-radius: 20px;
-    box-shadow: inset 3px 3px 3px rgba(255, 255, 255, .7), inset -2px -2px 3px rgba(0, 0, 0, .1), 2px 2px 10px rgba(0, 0, 0, .1);
+    box-shadow: inset 1px 3px 3px rgba(255, 255, 255, .7), inset -2px -2px 3px rgba(0, 0, 0, .1), 2px 2px 10px rgba(0, 0, 0, .1);
     height: 100%;
     left: 0;
     position: absolute;
@@ -90,8 +92,27 @@ header {
     cursor: pointer;
     display: flex;
     flex-direction: column;
-   
-   
+
+    .div-hp{
+      margin-bottom: 20px;
+    }
+    .hp {
+      // background-color: rgba(245, 245, 245, 0.45);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      // margin-bottom: 15px;
+      color: black;
+      padding-left: 15px;
+      padding-right: 15px;
+      letter-spacing: 2px;
+      text-shadow: 0px -1px 4px #000000;
+
+
+
+    }
+
   }
 
   .back {
@@ -100,80 +121,100 @@ header {
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    padding: 0px 10px 0px 20px;
+    padding: 12px 10px 10px 10px;
     text-align: center;
     transform: rotateY(180deg);
 
 
     .img-back-div {
       height: 50px;
-      margin-left: 86px;
-      margin-top: 10px;
-      width: 50px;
+      width: 100%;
+      margin-bottom: 5px;
 
 
       .imgBack {
         height: 100%;
-        width: 100%;
+        width: 50px;
       }
     }
 
-    .h2Back {
-      background-color: transparent;
-      background-color: yellow;
-      border: 3px outset $color_purple;
-      border-radius: 5px;
-      bottom: 91px;
-      color: white;
-      font-family: "Pokemon";
-      font-size: 26px;
-      font-weight: bold;
-      height: 70px;
-      left: 200px;
-      letter-spacing: 5px;
-      margin-top: 15px;
-      padding-top: 10px;
-      position: relative;
-      text-shadow: 0px -2px 6px #000000;
-      width: 70px;
+    // .h2Back {
+    //   background-color: transparent;
+    //   background-color: yellow;
+    //   border: 3px outset $color_purple;
+    //   border-radius: 5px;
+    //   bottom: 91px;
+    //   color: white;
+    //   font-family: "Pokemon";
+    //   font-weight: bold;
+    //   height: 70px;
+    //   left: 200px;
+    //   letter-spacing: 5px;
+    //   margin-top: 15px;
+    //   padding-top: 10px;
+    //   position: relative;
+    //   // text-shadow: 0px -2px 6px #000000;
+    //   width: 70px;
+    //   visibility: hidden;
 
-    }
+    // }
 
-    .heightWeight {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      font-size: 20px;
-      font-weight: 400px;
-      justify-content: space-between;
-      margin-top: -64px;
+    .div-text {
 
-      p {
-        background-color: rgba(245, 245, 245, 0.45);
-        border-radius: 5px 40px 5px 40px;
-        padding: 3px;
+      background-color: rgb(245 245 245 / 32%);
+      border-radius: 10px;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+      text-shadow: 0px -1px 4px #000000;
+
+
+
+      .heightWeight {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        // font-size: 20px;
+        // font-weight: 400px;
+        justify-content: space-between;
+        // margin-top: -74px;
+
+
+        p {
+          // background-color: rgba(245, 245, 245, 0.45);
+          border-radius: 10px;
+          padding: 2px;
+          font-family: "Pokemon";
+
+
+        }
+
       }
 
-    }
+      .experience {
+        // background-color: rgba(245, 245, 245, 0.45);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-family: "Pokemon";
+        color: black;
+        // background-color: white;
 
-    .experience {
-      background-color: rgba(245, 245, 245, 0.45);
-      border-radius: 5px 30px 5px 30px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: 5px;
-    }
 
-    .hp {
-      background-color: rgba(245, 245, 245, 0.45);
-      background-color: rgba(245, 245, 245, 0.45);
-      border-radius: 5px 30px 5px 30px;
-      border-radius: 5px 30px 5px 30px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: 5px;
+      }
+
+      .hp {
+        // background-color: rgba(245, 245, 245, 0.45);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        color: black;
+
+      }
     }
   }
 }
@@ -189,6 +230,7 @@ header {
   display: flex;
   justify-content: space-between;
   height: 50px;
+  box-shadow: inset 1px 0px 0px rgba(255, 255, 255, 0.7), inset -2px -2px 3px rgba(0, 0, 0, 0.1), 2px 2px 10px rgba(0, 0, 0, 0.1);
 
   h3 {
     font-family: "Pokemon";
@@ -197,7 +239,7 @@ header {
     color: white;
     padding-top: 3px;
     padding-right: 15px;
-    text-shadow: 0px -2px 6px #000000;
+    text-shadow: 0px -1px 4px #000000;
     letter-spacing: 3px;
   }
 
@@ -210,7 +252,7 @@ header {
     letter-spacing: 3.5px;
     padding-left: 19px;
     padding-top: 5px;
-    text-shadow: 0px -2px 6px #000000;
+    text-shadow: 0px -1px 4px #000000;
     text-transform: uppercase;
     width: 150px;
 
@@ -221,7 +263,7 @@ header {
 .imageContainer {
   bottom: 40px;
   height: 200px;
-  margin-left: 50px;
+  margin-left: 39px;
   padding-top: 30px;
   position: relative;
   width: 150px;
@@ -240,13 +282,14 @@ header {
 
   background: rgb(255, 255, 255);
   border-radius: 70%;
-  bottom: 149px;
-  height: 30%;
+  bottom: 135px;
+  height: 34%;
   left: 60px;
   opacity: 20%;
   position: absolute;
-  width: 50%;
+  width: 53%;
   z-index: 0;
+  visibility: hidden;
 }
 
 // h3 {
@@ -268,18 +311,16 @@ header {
 //   width: 70px;
 // }
 
-span {
-  font-size: 24px;
-  font-weight: 400px;
-}
+
 
 span p {
   display: flex;
-  font-size: 20px;
-  font-weight: 400;
+  // font-size: 20px;
+  // font-weight: 400;
   justify-content: center;
-  margin: 5px;
+  margin: 2px;
   text-align: justify;
+  letter-spacing: 2px;
 }
 
 #typeDiv {
@@ -289,8 +330,8 @@ span p {
   margin-top: 10px;
   width: 25px;
   -webkit-box-shadow: 11px 16px 19px -12px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 11px 16px 19px -12px rgba(0, 0, 0, 0.75);
-    box-shadow: 11px 16px 19px -12px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 11px 16px 19px -12px rgba(0, 0, 0, 0.75);
+  box-shadow: 11px 16px 19px -12px rgba(0, 0, 0, 0.75);
 
   #nameType {
     background-repeat: no-repeat;
@@ -303,7 +344,7 @@ span p {
     border: 1.8px solid #fff;
     margin-top: 3px;
     border-radius: 50%;
-    
+
   }
 }
 
@@ -324,7 +365,7 @@ span p {
     border-radius: 50px;
     -webkit-box-shadow: 11px 16px 19px -12px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 11px 16px 19px -12px rgba(0, 0, 0, 0.75);
-    box-shadow: 11px 16px 19px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: 4px 14px 19px -13px rgba(0, 0, 0, 0.75);
     color: rgb(255, 255, 255);
     cursor: pointer;
     display: flex;
@@ -418,6 +459,7 @@ span p {
     height: 40px;
     margin-right: 12px;
     width: 60px;
+    color: $color_purple;
 
   }
 

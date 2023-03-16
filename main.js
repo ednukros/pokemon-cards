@@ -389,14 +389,20 @@ function renderFront(pokemonsToPrint) {
     imgBackDiv$$.appendChild(imgBack$$);
     cardBack$$.appendChild(imgBackDiv$$);
 
-    const h2$$Back = document.createElement("h2");
-    h2$$Back.setAttribute("class", "h2Back");
-    h2$$Back.textContent = "#" + pokemon.id;
-    cardBack$$.appendChild(h2$$Back);
+    const divText$$ = document.createElement("div");
+    divText$$.setAttribute("class","div-text");
+    cardBack$$.appendChild(divText$$);
+
+
+
+    // const h2$$Back = document.createElement("h2");
+    // h2$$Back.setAttribute("class", "h2Back");
+    // h2$$Back.textContent = "#" + pokemon.id;
+    // cardBack$$.appendChild(h2$$Back);
 
     const heightWeight$$ = document.createElement("span");
     heightWeight$$.setAttribute("class", "heightWeight")
-    cardBack$$.appendChild(heightWeight$$);
+    divText$$.appendChild(heightWeight$$);
 
     const height$$ = document.createElement("p");
     height$$.textContent = "Altura" + " " + pokemon.height;
@@ -409,7 +415,7 @@ function renderFront(pokemonsToPrint) {
 
     const experience$$ = document.createElement("span");
     experience$$.setAttribute("class", "experience")
-    cardBack$$.appendChild(experience$$);
+    divText$$.appendChild(experience$$);
     const experienceText$$ = document.createElement("p");
     experienceText$$.textContent = "Experiencia "
     experience$$.appendChild(experienceText$$);
@@ -418,29 +424,11 @@ function renderFront(pokemonsToPrint) {
     experience$$.appendChild(experienceResul$$);
 
 
-    // const hp$$ = document.createElement("span");
-    // hp$$.setAttribute("class", "hp")
-    // cardBack$$.appendChild(hp$$);
-    // const hpText$$ = document.createElement("p");
-    // hpText$$.textContent = "Hp"
-    // hp$$.appendChild(hpText$$);
-    // const hpResul$$ = document.createElement("p");
-    // hpResul$$.textContent = pokemon.stats[0].base_stat;
-    // hp$$.appendChild(hpResul$$);
-
-    // const attack$$ = document.createElement("span");
-    // attack$$.setAttribute("class", "hp")
-    // cardBack$$.appendChild(attack$$);
-    // const attackText$$ = document.createElement("p");
-    // attackText$$.textContent = "Ataque";
-    // attack$$.appendChild(attackText$$);
-    // const attackResul$$ = document.createElement("p");
-    // attackResul$$.textContent = pokemon.stats[1].base_stat;
-    // attack$$.appendChild(attackResul$$);
+   
 
     const especialAttack$$ = document.createElement("span");
     especialAttack$$.setAttribute("class", "hp")
-    cardBack$$.appendChild(especialAttack$$);
+    divText$$.appendChild(especialAttack$$);
     const especialAttackText$$ = document.createElement("p");
     especialAttackText$$.textContent = "Ataq. Especial"
     especialAttack$$.appendChild(especialAttackText$$);
@@ -450,7 +438,7 @@ function renderFront(pokemonsToPrint) {
 
     const defense$$ = document.createElement("span");
     defense$$.setAttribute("class", "hp");
-    cardBack$$.appendChild(defense$$);
+   divText$$.appendChild(defense$$);
     const defenseText$$ = document.createElement("p");
     defenseText$$.textContent = "Defensa";
     defense$$.appendChild(defenseText$$);
@@ -460,7 +448,7 @@ function renderFront(pokemonsToPrint) {
 
     const especialDefense$$ = document.createElement("span");
     especialDefense$$.setAttribute("class", "hp");
-    cardBack$$.appendChild(especialDefense$$);
+    divText$$.appendChild(especialDefense$$);
     const especialDefenseText$$ = document.createElement("p");
     especialDefenseText$$.textContent = "Def.Especial";
     especialDefense$$.appendChild(especialDefenseText$$);
@@ -470,7 +458,7 @@ function renderFront(pokemonsToPrint) {
 
     const speed$$ = document.createElement("span");
     speed$$.setAttribute("class", "hp");
-    cardBack$$.appendChild(speed$$);
+    divText$$.appendChild(speed$$);
     const speedText$$ = document.createElement("p");
     speedText$$.textContent = "Velocidad";
     speed$$.appendChild(speedText$$);
@@ -494,6 +482,29 @@ function renderFront(pokemonsToPrint) {
     cardFront$$.appendChild(imageContainer$$);
     imageContainer$$.appendChild(img$$);
     cardFront$$.appendChild(circle$$);
+
+    const divHp$$ = document.createElement("div");
+    divHp$$.setAttribute("class", "div-hp")
+    cardFront$$.appendChild(divHp$$)
+    const hp$$ = document.createElement("span");
+    hp$$.setAttribute("class", "hp")
+    divHp$$.appendChild(hp$$);
+    const hpText$$ = document.createElement("p");
+    hpText$$.textContent = "Hp"
+    hp$$.appendChild(hpText$$);
+    const hpResul$$ = document.createElement("p");
+    hpResul$$.textContent = pokemon.stats[0].base_stat;
+    hp$$.appendChild(hpResul$$);
+
+    const attack$$ = document.createElement("span");
+    attack$$.setAttribute("class", "hp")
+    divHp$$.appendChild(attack$$);
+    const attackText$$ = document.createElement("p");
+    attackText$$.textContent = "Ataque";
+    attack$$.appendChild(attackText$$);
+    const attackResul$$ = document.createElement("p");
+    attackResul$$.textContent = pokemon.stats[1].base_stat;
+    attack$$.appendChild(attackResul$$);
 
    
 
