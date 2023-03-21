@@ -71,9 +71,10 @@ header .logo {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 #pokedex .front .div-hp {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 #pokedex .front .hp {
   border-radius: 10px;
@@ -179,19 +180,13 @@ header .logo {
 }
 
 .imageContainer {
-  bottom: 40px;
   height: 200px;
   margin-left: 39px;
-  padding-top: 30px;
-  position: relative;
   width: 150px;
-  z-index: 1;
 }
 
 .imgFront {
   align-items: center;
-  position: relative;
-  bottom: 16px;
   width: 100px;
 }
 
